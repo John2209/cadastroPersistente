@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=MenuGrafico
+comment0.text=\r\n\ Implementa\ as\ entradas\ e\ sa\u00EDdas\ do\ cadstroAluno\ em\ modo\ gr\u00E1fico.\r\n\r\n\ @author\ Guilherme\ Pereira\ de\ Rivoredo,\ Jo\u00E3o\ Batistella\ da\ Costa,\ Pedro\ Henrique\ Freire\ Pereira,\ Rafael\ Barros\ Infantini\r\n\ @version\ 1.0\ 2026/04/07\r\n
+comment1.params=opcoes
+comment1.target=int\ criarMenu(java.lang.String[])
+comment1.text=\r\n\ Monta\ o\ menu\ principal\ e\ realiza\ a\ leitura.\r\n\r\n\ @param\ opcoes\ vetor\ com\ as\ op\u00E7\u00F5es\ do\ menu\r\n\ @return\ op\u00E7\u00E3o\ escolhida\ pelo\ usu\u00E1rio\r\n
+comment2.params=mensagem
+comment2.target=java.lang.String\ lerEntrada(java.lang.String)
+comment2.text=\r\n\ Solicita\ uma\ entrada\ ao\ usu\u00E1rio\ pela\ janela.\r\n\r\n\ @param\ mensagem\ texto\ apresentado\ ao\ usu\u00E1rio\r\n\ @return\ valor\ informado\r\n
+comment3.params=mensagem
+comment3.target=void\ exibirMensagem(java.lang.String)
+comment3.text=\r\n\ Exibe\ uma\ mensagem\ ao\ usu\u00E1rio\ pela\ janela.\r\n\r\n\ @param\ mensagem\ texto\ a\ ser\ exibido\r\n
+numComments=4

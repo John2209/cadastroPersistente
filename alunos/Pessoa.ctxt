@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Pessoa
+comment0.text=\r\n\ Classe\ para\ armazenar\ dados\ b\u00E1sicos\ de\ uma\ pessoa.\r\n\ Utiliza\ a\ classe\ NomePessoa\ por\ composi\u00E7\u00E3o.\r\n\r\n\ @author\ Guilherme\ Pereira\ de\ Rivoredo,\ Jo\u00E3o\ Batistella\ da\ Costa,\ Pedro\ Henrique\ Freire\ Pereira,\ Rafael\ Barros\ Infantini\r\n\ @version\ 1.0\ 2026/04/07\r\n
+comment1.params=nome\ idade
+comment1.target=Pessoa(java.lang.String,\ int)
+comment1.text=\r\n\ Construtor\ da\ classe\ Pessoa\r\n\r\n\ @param\ nome\ nome\ da\ pessoa\r\n\ @param\ idade\ idade\ da\ pessoa\r\n
+comment2.params=nome
+comment2.target=void\ setNome(java.lang.String)
+comment2.text=\r\n\ Atualiza\ o\ nome\ da\ pessoa\r\n\r\n\ @param\ nome\ novo\ nome\ da\ pessoa\r\n
+comment3.params=idade
+comment3.target=void\ setIdade(int)
+comment3.text=\r\n\ Atualiza\ a\ idade\ da\ pessoa\r\n\r\n\ @param\ idade\ nova\ idade\ da\ pessoa\r\n
+comment4.params=
+comment4.target=java.lang.String\ getNome()
+comment4.text=\r\n\ Retorna\ o\ nome\ da\ pessoa\r\n\r\n\ @return\ nome\ da\ pessoa\r\n
+comment5.params=
+comment5.target=int\ getIdade()
+comment5.text=\r\n\ Retorna\ a\ idade\ da\ pessoa\r\n\r\n\ @return\ idade\ da\ pessoa\r\n
+comment6.params=
+comment6.target=java.lang.String\ getNomeBiblio()
+comment6.text=\r\n\ Retorna\ o\ nome\ da\ pessoa\ em\ formato\ bibliogr\u00E1fico\r\n\r\n\ @return\ nome\ bibliogr\u00E1fico\ da\ pessoa\r\n
+comment7.params=
+comment7.target=java.lang.String\ toString()
+comment7.text=\r\n\ Retorna\ os\ dados\ da\ pessoa\ em\ formato\ textual\r\n\r\n\ @return\ representa\u00E7\u00E3o\ textual\ da\ pessoa\r\n
+numComments=8

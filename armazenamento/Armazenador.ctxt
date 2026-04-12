@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Armazenador
+comment0.text=\r\n\ Implementa\ o\ armazenamento\ dos\ alunos\ em\ um\ vetor.\r\n\ Disponibiliza\ opera\u00E7\u00F5es\ de\ inser\u00E7\u00E3o,\ remo\u00E7\u00E3o\ e\ busca.\r\n\r\n\ @author\ Guilherme\ Pereira\ de\ Rivoredo,\ Jo\u00E3o\ Batistella\ da\ Costa,\ Pedro\ Henrique\ Freire\ Pereira,\ Rafael\ Barros\ Infantini\r\n\ @version\ 1.0\ 2026/04/07\r\n
+comment1.params=qtde
+comment1.target=Armazenador(int)
+comment1.text=\r\n\ Construtor\ do\ armazenador.\r\n\r\n\ @param\ qtde\ quantidade\ m\u00E1xima\ de\ alunos\ suportada\r\n
+comment2.params=pos
+comment2.target=alunos.Aluno\ getAluno(int)
+comment2.text=\r\n\ Retorna\ o\ aluno\ armazenado\ em\ uma\ determinada\ posi\u00E7\u00E3o.\r\n\r\n\ @param\ pos\ posi\u00E7\u00E3o\ desejada\r\n\ @return\ aluno\ armazenado\ na\ posi\u00E7\u00E3o\ informada\r\n
+comment3.params=a\ qtde
+comment3.target=boolean\ inserir(alunos.Aluno,\ int)
+comment3.text=\r\n\ Insere\ um\ aluno\ na\ primeira\ posi\u00E7\u00E3o\ dispon\u00EDvel.\r\n\r\n\ @param\ a\ objeto\ aluno\ a\ ser\ inserido\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ armazenamento\r\n\ @return\ true\ quando\ a\ inser\u00E7\u00E3o\ for\ realizada\ com\ sucesso\r\n
+comment4.params=ra\ qtde
+comment4.target=boolean\ remover(java.lang.String,\ int)
+comment4.text=\r\n\ Remove\ um\ aluno\ a\ partir\ do\ RA\ informado.\r\n\r\n\ @param\ ra\ registro\ acad\u00EAmico\ do\ aluno\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ armazenamento\r\n\ @return\ true\ quando\ a\ remo\u00E7\u00E3o\ for\ realizada\ com\ sucesso\r\n
+comment5.params=ra\ qtde
+comment5.target=alunos.Aluno\ buscar(java.lang.String,\ int)
+comment5.text=\r\n\ Busca\ um\ aluno\ a\ partir\ do\ RA\ informado.\r\n\r\n\ @param\ ra\ registro\ acad\u00EAmico\ do\ aluno\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ armazenamento\r\n\ @return\ aluno\ encontrado\ ou\ null\ quando\ n\u00E3o\ existir\r\n
+numComments=6

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=CadastroAlunos
+comment0.text=\r\n\ Coordena\ as\ opera\u00E7\u00F5es\ do\ CadastroAlunos\r\n\ Cont\u00E9m\ as\ opera\u00E7\u00F5es\ principais\ do\ CadastroAluno\r\n\r\n\ @author\ Guilherme\ Pereira\ de\ Rivoredo,\ Jo\u00E3o\ Batistella\ da\ Costa,\ Pedro\ Henrique\ Freire\ Pereira,\ Rafael\ Barros\ Infantini\r\n\ @version\ 1.0\ 2026/04/07\r\n
+comment1.params=qtde\ menu
+comment1.target=CadastroAlunos(int,\ menu.IMenu)
+comment1.text=\r\n\ Construtor\ da\ classe.\r\n\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ armazenamento\ de\ alunos\r\n\ @param\ menu\ implementa\u00E7\u00E3o\ de\ entrada\ e\ sa\u00EDda\ utilizada\ pela\ aplica\u00E7\u00E3o\r\n
+comment2.params=qtde
+comment2.target=boolean\ inserirAluno(int)
+comment2.text=\r\n\ Realiza\ o\ cadastro\ de\ um\ novo\ aluno.\r\n\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ cadastro\r\n\ @return\ true\ quando\ a\ inser\u00E7\u00E3o\ for\ realizada\ com\ sucesso\r\n
+comment3.params=qtde
+comment3.target=boolean\ removerAluno(int)
+comment3.text=\r\n\ Remove\ um\ aluno\ a\ partir\ do\ RA\ informado.\r\n\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ cadastro\r\n\ @return\ true\ quando\ a\ remo\u00E7\u00E3o\ for\ realizada\ com\ sucesso\r\n
+comment4.params=qtde
+comment4.target=void\ listarAluno(int)
+comment4.text=\r\n\ Lista\ todos\ os\ alunos\ cadastrados.\r\n\ Permite\ escolher\ entre\ exibi\u00E7\u00E3o\ comum\ e\ bibliogr\u00E1fica.\r\n\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ cadastro\r\n
+comment5.params=qtde
+comment5.target=boolean\ atualizarAluno(int)
+comment5.text=\r\n\ Atualiza\ os\ dados\ de\ um\ aluno\ j\u00E1\ cadastrado.\r\n\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ cadastro\r\n\ @return\ true\ quando\ a\ atualiza\u00E7\u00E3o\ for\ realizada\ com\ sucesso\r\n
+numComments=6
