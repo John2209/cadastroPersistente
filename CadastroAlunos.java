@@ -8,7 +8,7 @@ import alunos.*;
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-public class CadastroAlunos {
+public class CadastroAlunos implements java.io.Serializable{
     private IArmazenador arm;
     private IMenu menu;
 
@@ -311,7 +311,16 @@ public class CadastroAlunos {
         }
 
         a.setSemestre(semestre);
+        
+        
 
         return true;
     }
+    
+    public IArmazenador getArm(){
+        
+        return this.arm;
+}
+
+
 }

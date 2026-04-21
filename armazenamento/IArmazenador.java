@@ -1,5 +1,6 @@
 package armazenamento;
 import alunos.*;
+import java.io.Serializable;
 /**
  * Define as operações de armazenamento utilizadas pelo cadastro de alunos.
  * Permite substituir a estrutura de dados sem alterar o restante da aplicação.

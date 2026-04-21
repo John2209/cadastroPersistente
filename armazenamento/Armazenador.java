@@ -1,5 +1,6 @@
 package armazenamento;
 import alunos.*;
+import java.io.Serializable;
 /**
  * Implementa o armazenamento dos alunos em um vetor.
  * Disponibiliza operações de inserção, remoção e busca.
@@ -7,7 +8,7 @@ import alunos.*;
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-public class Armazenador implements IArmazenador {
+public class Armazenador implements IArmazenador, Serializable {
     private Aluno[] arm;
 
     /**

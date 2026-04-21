@@ -1,4 +1,5 @@
 package alunos;
+import java.io.Serializable;
 /**
  * Classe para armazenar dados básicos de uma pessoa.
  * Utiliza a classe NomePessoa por composição.
@@ -6,7 +7,7 @@ package alunos;
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-public class Pessoa {
+public class Pessoa implements Serializable{
     private NomePessoa nome;
     private int idade;
 

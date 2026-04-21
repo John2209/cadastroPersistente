@@ -1,4 +1,5 @@
 import menu.*;
+import Arquivo.*;
 /**
  * Classe principal do cadastroAluno
  * Responsável por iniciar a interface e controlar o menu
@@ -15,9 +16,12 @@ public class App {
     public static void main(String[] args) {
         IMenu mn = IMenu.criar();
         int qtde = lerQuantidadeAlunos(mn);
+        ISalvamento arq = ISalvamento.criar();
+        String nomeArquivo;
 
+    
         CadastroAlunos ca = new CadastroAlunos(qtde, mn);
-        String[] itensMenu = {"1 - inserir", "2 - remover", "3 - listar", "4 - atualizar dados", "5 - sair"};
+        String[] itensMenu = {"1 - inserir", "2 - remover", "3 - listar", "4 - atualizar dados", "5 - Salvar", "6 - Acessar arquivo salvo", "7 - Sair"};
 
         int opcao = 0;
 
@@ -29,22 +33,36 @@ public class App {
                     if (ca.inserirAluno(qtde)) {
                         mn.exibirMensagem("Aluno inserido com sucesso!!\n");
                     }
-                break;
+                    break;
                 case 2:
                     if (ca.removerAluno(qtde)) {
                         mn.exibirMensagem("Aluno removido com sucesso!!\n");
                     }
-                break;
+                    break;
                 case 3:
                     ca.listarAluno(qtde);
-                break;
+                    break;
                 case 4:
                     if (ca.atualizarAluno(qtde)) {
                         mn.exibirMensagem("Aluno atualizado com sucesso!!\n");
                     }
-                break;
+                    break;
+                case 5:
+                    nomeArquivo = mn.lerEntrada("nome do arquivo");
+                    arq.gravarObj(ca,nomeArquivo);
+                    break;
+                case 6:
+                    nomeArquivo = mn.lerEntrada("nome do arquivo");
+                    Object obj = arq.lerObj(nomeArquivo);
+                    if (obj instanceof CadastroAlunos) {
+                        ca = (CadastroAlunos) obj;
+                        mn.exibirMensagem("Arquivo carregado com sucesso!\n");
+                    }
+                    break;
+
+                    
             }
-        } while(opcao > 0 && opcao < 5);    //se a opcao for diferente de 1, 2, 3, 4, sai do programa
+        } while(opcao > 0 && opcao < 7);    //se a opcao for diferente de 1, 2, 3, 4,5,6 sai do programa
     }
 
     /**

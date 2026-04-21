@@ -1,4 +1,5 @@
 package alunos;
+import java.io.Serializable;
 /**
  * Classe para armazenar os dados de um aluno.
  * Herda nome e idade da classe Pessoa.
@@ -6,7 +7,7 @@ package alunos;
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-public class Aluno extends Pessoa {
+public class Aluno extends Pessoa implements Serializable {
     private String ra;
     private String curso;
     private int semestre;

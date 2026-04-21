@@ -16,4 +16,6 @@ comment4.text=\r\n\ Lista\ todos\ os\ alunos\ cadastrados.\r\n\ Permite\ escolhe
 comment5.params=qtde
 comment5.target=boolean\ atualizarAluno(int)
 comment5.text=\r\n\ Atualiza\ os\ dados\ de\ um\ aluno\ j\u00E1\ cadastrado.\r\n\r\n\ @param\ qtde\ capacidade\ m\u00E1xima\ do\ cadastro\r\n\ @return\ true\ quando\ a\ atualiza\u00E7\u00E3o\ for\ realizada\ com\ sucesso\r\n
-numComments=6
+comment6.params=
+comment6.target=armazenamento.IArmazenador\ getArm()
+numComments=7

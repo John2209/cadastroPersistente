@@ -1,4 +1,5 @@
 package alunos;
+import java.io.Serializable;
 /**
  * Classe para armazenar o nome de uma pessoa.
  * Também disponibiliza o nome em formato bibliográfico.
@@ -6,7 +7,7 @@ package alunos;
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-public class NomePessoa {
+public class NomePessoa implements Serializable{
     private Texto nome;
 
     /**

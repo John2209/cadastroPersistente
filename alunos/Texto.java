@@ -1,11 +1,12 @@
 package alunos;
+import java.io.Serializable;
 /**
  * Armazena um texto e disponibiliza operações simples de manipulação.
  *
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-public class Texto {
+public class Texto implements Serializable{
     private String txt;
 
     /**
