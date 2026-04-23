@@ -311,16 +311,10 @@ public class CadastroAlunos implements java.io.Serializable{
         }
 
         a.setSemestre(semestre);
-        
-        
-
         return true;
     }
     
-    public IArmazenador getArm(){
-        
+    public IArmazenador getArm() {
         return this.arm;
-}
-
-
+    }
 }

@@ -1,5 +1,5 @@
 import menu.*;
-import Arquivo.*;
+import salvamento.*;
 /**
  * Classe principal do cadastroAluno
  * Responsável por iniciar a interface e controlar o menu
@@ -56,7 +56,7 @@ public class App {
                     Object obj = arq.lerObj(nomeArquivo);
                     if (obj instanceof CadastroAlunos) {
                         ca = (CadastroAlunos) obj;
-                        mn.exibirMensagem("Arquivo carregado com sucesso!\n");
+                        mn.exibirMensagem("salvamento carregado com sucesso!\n");
                     }
                     break;
 
