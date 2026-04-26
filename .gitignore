@@ -23,3 +23,6 @@
 # Ignorar pastas de saída de build comuns
 bin/
 out/
+
+# Ignorar configurações locais do IntelliJ IDEA
+.idea/
