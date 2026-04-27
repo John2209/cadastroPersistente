@@ -8,6 +8,7 @@ import java.util.Scanner;
  * @version 1.0 2026/04/07
  */
 public class MenuTexto implements IMenu {
+    // Lê entradas digitadas no console.
     private Scanner leitor;
 
     /**
@@ -15,6 +16,7 @@ public class MenuTexto implements IMenu {
      * Inicializa o leitor pelo teclado.
      */
     public MenuTexto() {
+        // Inicializa o leitor com a entrada padrão
         this.leitor = new Scanner(System.in);
     }
 
@@ -25,26 +27,35 @@ public class MenuTexto implements IMenu {
      * @return opção válida escolhida pelo usuário
      */
     public int criarMenu(String opcoes[]) {
+        // Monta o texto do menu
         String itens = "";
 
+        // Adiciona cada opção ao texto exibido
         for (int i = 0; i < opcoes.length; i++) {
             itens = itens + "\n" + opcoes[i];
         }
 
+        // Adiciona a mensagem final de seleção
         itens = itens + "\n\nSelecione a opcao: ";
 
+        // Repete até receber uma opção válida
         while (true) {
+            // Lê a opção digitada
             String s = lerEntrada(itens);
 
             try {
+                // Converte a opção para número
                 int opcao = Integer.parseInt(s);
 
+                // Retorna se a opção estiver no intervalo válido
                 if (opcao > 0 && opcao <= opcoes.length) {
                     return opcao;
                 }
             } catch (NumberFormatException e) {
+                // Ignora erro e pede novamente
             }
 
+            // Informa que a opção é inválida
             exibirMensagem("Opcao invalida");
         }
     }
@@ -56,7 +67,9 @@ public class MenuTexto implements IMenu {
      * @return valor informado pelo usuário
      */
     public String lerEntrada(String mensagem) {
+        // Mostra a mensagem sem quebrar linha
         System.out.print(mensagem);
+        // Lê a linha digitada
         return this.leitor.nextLine();
     }
 
@@ -66,6 +79,7 @@ public class MenuTexto implements IMenu {
      * @param mensagem texto a ser exibido
      */
     public void exibirMensagem(String mensagem) {
+        // Exibe a mensagem no console
         System.out.println(mensagem);
     }
 }

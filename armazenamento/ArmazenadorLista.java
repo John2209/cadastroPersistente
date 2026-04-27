@@ -11,10 +11,12 @@ import java.util.ArrayList;
  * @version 1.0 2026/04/07
  */
 public class ArmazenadorLista implements IArmazenador, Serializable {
+    // Guarda os alunos em uma lista dinâmica
     private ArrayList<Aluno> arm;
 
 
     ArmazenadorLista() {
+        // Inicializa a lista vazia
         this.arm = new ArrayList<Aluno>();
     }
 
@@ -25,6 +27,7 @@ public class ArmazenadorLista implements IArmazenador, Serializable {
      * @return o aluno armazenado na posição especificada
      */
     public Aluno getAluno(int pos) {
+        // Retorna o aluno da posição informada
         return this.arm.get(pos);
     }
 
@@ -35,6 +38,7 @@ public class ArmazenadorLista implements IArmazenador, Serializable {
      * @return true se o aluno foi inserido com sucesso, false caso contrário
      */
     public boolean inserir(Aluno a) {
+        // Adiciona o aluno ao fim da lista
         return this.arm.add(a);
     }
 
@@ -45,12 +49,15 @@ public class ArmazenadorLista implements IArmazenador, Serializable {
      * @return true se o aluno foi removido com sucesso, false caso contrário
      */
     public boolean remover(String ra) {
+        // Percorre os alunos armazenados
         for (Aluno a : this.arm) {
+            // Remove o aluno quando o RA coincidir
             if (a != null && a.getRa().equals(ra)) {
                 this.arm.remove(a);
                 return true;
             }
         }
+        // Retorna falso se não encontrar o RA
         return false;
     }
 
@@ -61,11 +68,14 @@ public class ArmazenadorLista implements IArmazenador, Serializable {
      * @return o aluno correspondente ao RA informado, ou null se não for encontrado
      */
     public Aluno buscar(String ra) {
+        // Percorre os alunos armazenados
         for (Aluno a : this.arm) {
+            // Retorna o aluno quando o RA coincidir
             if (a != null && a.getRa().equals(ra)) {
                 return a;
             }
         }
+        // Retorna nulo se não encontrar o RA
         return null;
     }
 
@@ -77,15 +87,17 @@ public class ArmazenadorLista implements IArmazenador, Serializable {
      * @return a quantidade de alunos armazenados
      */
     public int getQtde() {
+        // Retorna a quantidade atual de alunos.
         return this.arm.size();
     }
 
     /**
-     * Verifica se o armazenamento está cheio.
+     * Verifica se o armazenamento está cheio
      *
      * @return true se estiver cheio, false caso contrário
      */
     public boolean estaCheio() {
+        // Lista dinâmica não possui limite fixo
         return false;
     }
 }

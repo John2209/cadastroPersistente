@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @version 1.0 2026/04/07
  */
 public class ArmazenadorArray implements IArmazenador, Serializable {
+    // Guarda os alunos em posições fixas
     private Aluno[] arm;
 
     /**
@@ -17,6 +18,7 @@ public class ArmazenadorArray implements IArmazenador, Serializable {
      * @param qtde quantidade máxima de alunos suportada
      */
     ArmazenadorArray(int qtde) {
+        // Cria o vetor com a capacidade informada
         this.arm = new Aluno[qtde];
     }
 
@@ -27,6 +29,7 @@ public class ArmazenadorArray implements IArmazenador, Serializable {
      * @return aluno armazenado na posição informada
      */
     public Aluno getAluno(int pos) {
+        // Retorna o aluno da posição informada
         return this.arm[pos];
     }
 
@@ -37,19 +40,25 @@ public class ArmazenadorArray implements IArmazenador, Serializable {
      * @return true quando a inserção for realizada com sucesso
      */
     public boolean inserir(Aluno a) {
+        // Guarda a capacidade total do vetor
         int qtde = this.arm.length;
+        // Indica se a inserção foi concluída
         boolean inserido = false;
+        // Controla a posição atual da busca
         int cont = 0;
 
-        while (!inserido && cont < qtde) {  //Enquanto nao tiver terminado a insercao e a quantidade for menor que a capacidade maxima, fica em loop
+        while (!inserido && cont < qtde) {
+            // Insere na primeira posição vazia
             if (arm[cont] == null) {
                 arm[cont] = a;
                 inserido = true;
             } else {
+                // Avança para a próxima posição
                 cont++;
             }
         }
 
+        // Retorna o resultado da inserção
         return inserido;
     }
 
@@ -60,18 +69,24 @@ public class ArmazenadorArray implements IArmazenador, Serializable {
      * @return true quando a remoção for realizada com sucesso
      */
     public boolean remover(String ra) {
+        // Guarda a capacidade total do vetor
         int qtde = this.arm.length;
+        // Indica se a remoção foi concluída
         boolean removido = false;
+        // Controla a posição atual da busca
         int cont = 0;
 
-        while (!removido && cont < qtde) {  //Enquanto nao tiver terminado a insercao e a quantidade for menor que a capacidade maxima, fica em loop
+        while (!removido && cont < qtde) {
+            // Remove quando encontrar o RA informado
             if (arm[cont] != null && arm[cont].getRa().equals(ra)) {
                 arm[cont] = null;
                 removido = true;
             } else {
+                // Avança para a próxima posição
                 cont++;
             }
         }
+        // Retorna o resultado da remoção
         return removido;
     }
 
@@ -82,12 +97,16 @@ public class ArmazenadorArray implements IArmazenador, Serializable {
      * @return aluno encontrado ou null quando não existir
      */
     public Aluno buscar(String ra) {
+        // Guarda a capacidade total do vetor
         int qtde = this.arm.length;
+        // Percorre todas as posições do vetor
         for (int cont = 0; cont < qtde; cont++) {
+            // Retorna o aluno quando o RA coincidir
             if (arm[cont] != null && arm[cont].getRa().equals(ra)) {
                 return arm[cont];
             }
         }
+        // Retorna nulo se não encontrar o RA
         return null;
     }
 
@@ -97,6 +116,7 @@ public class ArmazenadorArray implements IArmazenador, Serializable {
      * @return quantidade de alunos armazenados
      */
     public int getQtde() {
+        // Retorna a capacidade total do vetor
         return arm.length;
     }
 
@@ -106,11 +126,14 @@ public class ArmazenadorArray implements IArmazenador, Serializable {
      * @return true se estiver cheio, false caso contrário
      */
     public boolean estaCheio() {
+        // Percorre todas as posições do vetor
         for (int i = 0; i < arm.length; i++) {
+            // Ainda há espaço se encontrar posição vazia
             if (arm[i] == null) {
                 return false;
             }
         }
+        // Retorna verdadeiro se não houver espaço livre
         return true;
     }
 }

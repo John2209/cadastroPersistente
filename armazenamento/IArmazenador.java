@@ -17,7 +17,10 @@ public interface IArmazenador {
      * @return implementação de armazenamento escolhida
      */
     static IArmazenador criar(int qtde) {
+        // Retorna a implementação com Lista
         return new ArmazenadorLista();
+
+        // Tamanho fixo
         //return new ArmazenadorArray(qtde);
     }
 
@@ -28,6 +31,7 @@ public interface IArmazenador {
      * @return uma instância de IArmazenador utilizando a implementação ArmazenadorLista
      */
     static IArmazenador criar() {
+        // Retorna o armazenamento padrão
         return new ArmazenadorLista();
     }
 

@@ -13,8 +13,11 @@ public interface IMenu {
      *
      * @return implementação de menu escolhida
      */
-    static IMenu criar() {  //altera entre a interface gráfica e o terminal manualmente
+    static IMenu criar() {  // Altera entre a interface gráfica e o terminal manualmente
+        // Retorna a implementação de interface ativa
         return new MenuGrafico();
+
+        // Execução em texto
         //return new MenuTexto();
     }
 
@@ -24,7 +27,7 @@ public interface IMenu {
      * @param opcoes vetor com as opções que serão exibidas no menu
      * @return opção selecionada pelo usuário
      */
-    int criarMenu(String opcoes[]);
+    int criarMenu(String[] opcoes);
 
     /**
      * Solicita uma entrada textual ao usuário.

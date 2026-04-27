@@ -8,7 +8,9 @@ import java.io.Serializable;
  * @version 1.0 2026/04/07
  */
 public class Pessoa implements Serializable{
+    // Guarda o nome como objeto
     private NomePessoa nome;
+    // Guarda a idade da pessoa
     private int idade;
 
     /**
@@ -18,7 +20,9 @@ public class Pessoa implements Serializable{
      * @param idade idade da pessoa
      */
     Pessoa(String nome, int idade) {
+        // Cria o objeto nome
         this.nome = new NomePessoa(nome);
+        // Define a idade
         this.idade = idade;
     }
 
@@ -28,6 +32,7 @@ public class Pessoa implements Serializable{
      * @param nome novo nome da pessoa
      */
     public void setNome(String nome) {
+        // Atualiza o nome armazenado
         this.nome.setNome(nome);
     }
 
@@ -37,6 +42,7 @@ public class Pessoa implements Serializable{
      * @param idade nova idade da pessoa
      */
     public void setIdade(int idade) {
+        // Atualiza a idade armazenada
         this.idade = idade;
     }
 
@@ -46,6 +52,7 @@ public class Pessoa implements Serializable{
      * @return nome da pessoa
      */
     public String getNome() {
+        // Retorna o nome atual
         return this.nome.getNome();
     }
 
@@ -55,6 +62,7 @@ public class Pessoa implements Serializable{
      * @return idade da pessoa
      */
     public int getIdade() {
+        // Retorna a idade atual
         return this.idade;
     }
 
@@ -64,6 +72,7 @@ public class Pessoa implements Serializable{
      * @return nome bibliográfico da pessoa
      */
     public String getNomeBiblio() {
+        // Retorna o nome em formato bibliográfico
         return this.nome.getNomeBiblio();
     }
 
@@ -73,6 +82,7 @@ public class Pessoa implements Serializable{
      * @return representação textual da pessoa
      */
     public String toString() {
+        // Monta a representação textual da pessoa
         return this.nome.toString() + "\nIdade: " + idade;
     }
 }

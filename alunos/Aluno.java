@@ -8,8 +8,11 @@ import java.io.Serializable;
  * @version 1.0 2026/04/07
  */
 public class Aluno extends Pessoa implements Serializable {
+    // Guarda o RA do aluno
     private String ra;
+    // Guarda o curso do aluno
     private String curso;
+    // Guarda o semestre do aluno
     private int semestre;
 
     /**
@@ -22,9 +25,13 @@ public class Aluno extends Pessoa implements Serializable {
      * @param semestre semestre do aluno
      */
     public Aluno(String nome, int idade, String ra, String curso, int semestre) {
+        // Inicializa os dados herdados de pessoa
         super(nome, idade);
+        // Define o RA do aluno
         this.ra = ra;
+        // Define o curso do aluno
         this.curso = curso;
+        // Define o semestre do aluno
         this.semestre = semestre;
     }
 
@@ -34,6 +41,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @return nome bibliográfico do aluno
      */
     public String getNomeBiblio() {
+        // Reaproveita a conversão bibliográfica da classe base
         return super.getNomeBiblio();
     }
 
@@ -43,6 +51,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @return RA do aluno
      */
     public String getRa() {
+        // Retorna o RA atual
         return this.ra;
     }
 
@@ -52,6 +61,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @return curso do aluno
      */
     public String getCurso() {
+        // Retorna o curso atual
         return this.curso;
     }
 
@@ -61,6 +71,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @return semestre do aluno
      */
     public int getSemestre() {
+        // Retorna o semestre atual
         return this.semestre;
     }
 
@@ -70,6 +81,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @param ra novo RA do aluno
      */
     public void setRa(String ra) {
+        // Atualiza o RA
         this.ra = ra;
     }
 
@@ -79,6 +91,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @param curso novo curso do aluno
      */
     public void setCurso(String curso) {
+        // Atualiza o curso
         this.curso = curso;
     }
 
@@ -88,6 +101,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @param semestre novo semestre do aluno
      */
     public void setSemestre(int semestre) {
+        // Atualiza o semestre
         this.semestre = semestre;
     }
 
@@ -97,6 +111,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @return representação textual do aluno
      */
     public String toString() {
+        // Monta a representação padrão do aluno
         return super.toString() + "\nRA: " + ra + "\nCurso: " + curso + "\nSemestre: " + semestre;
     }
 
@@ -106,6 +121,7 @@ public class Aluno extends Pessoa implements Serializable {
      * @return representação do aluno em formato bibliográfico
      */
     public String toStringBiblio() {
+        // Monta a representação com nome bibliográfico
         return getNomeBiblio() + "\nIdade: " + getIdade() + "\nRA: " + getRa() + "\nCurso: " + getCurso() + "\nSemestre: " + getSemestre();
     }
 }

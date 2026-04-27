@@ -16,30 +16,40 @@ public class MenuGrafico implements IMenu {
      * @return opção escolhida pelo usuário
      */
     public int criarMenu(String opcoes[]) {
+        // Monta o texto do menu
         String itens = "";
 
+        // Adiciona cada opção ao texto exibido
         for (int i = 0; i < opcoes.length; i++) {
             itens = itens + "\n" + opcoes[i];
         }
 
+        // Adiciona a mensagem final de seleção
         itens = itens + "\n\nSelecione a opcao: ";
 
+        // Repete até receber uma opção válida
         while (true) {
+            // Lê a opção digitada na janela
             String entrada = lerEntrada(itens);
 
+            // Trata cancelamento como saída
             if (entrada == null) {
                 return opcoes.length;
             }
 
             try {
+                // Converte a entrada para número
                 int opcao = Integer.parseInt(entrada);
 
+                // Retorna se a opção estiver no intervalo válido
                 if (opcao > 0 && opcao <= opcoes.length) {
                     return opcao;
                 }
             } catch (NumberFormatException e) {
+                // Ignora erro e pede novamente
             }
 
+            // Informa que a opção é inválida
             exibirMensagem("Opcao invalida");
         }
     }
@@ -51,6 +61,7 @@ public class MenuGrafico implements IMenu {
      * @return valor informado
      */
     public String lerEntrada(String mensagem) {
+        // Abre uma janela para leitura de texto
         return JOptionPane.showInputDialog(mensagem);
     }
 
@@ -60,6 +71,7 @@ public class MenuGrafico implements IMenu {
      * @param mensagem texto a ser exibido
      */
     public void exibirMensagem(String mensagem) {
+        // Exibe a mensagem em uma janela
         JOptionPane.showMessageDialog(null, mensagem);
     }
 }
