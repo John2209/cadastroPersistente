@@ -1,6 +1,6 @@
 package armazenamento;
 import alunos.*;
-import java.io.Serializable;
+
 /**
  * Define as operações de armazenamento utilizadas pelo cadastro de alunos.
  * Permite substituir a estrutura de dados sem alterar o restante da aplicação.
@@ -17,7 +17,18 @@ public interface IArmazenador {
      * @return implementação de armazenamento escolhida
      */
     static IArmazenador criar(int qtde) {
-        return new Armazenador(qtde);
+        return new ArmazenadorLista();
+        //return new ArmazenadorArray(qtde);
+    }
+
+    /**
+     * Cria uma implementação de armazenamento padrão para o cadastro de alunos.
+     * Atualmente, utiliza a implementação baseada em uma lista.
+     *
+     * @return uma instância de IArmazenador utilizando a implementação ArmazenadorLista
+     */
+    static IArmazenador criar() {
+        return new ArmazenadorLista();
     }
 
     /**
@@ -32,26 +43,37 @@ public interface IArmazenador {
      * Insere um aluno no armazenamento.
      *
      * @param a objeto aluno a ser inserido
-     * @param qtde capacidade máxima do armazenamento
      * @return true quando a inserção for realizada com sucesso
      */
-    boolean inserir(Aluno a, int qtde);
+    boolean inserir(Aluno a);
 
     /**
      * Remove um aluno do armazenamento.
      *
      * @param ra RA do aluno
-     * @param qtde capacidade máxima do armazenamento
      * @return true quando a remoção for realizada com sucesso
      */
-    boolean remover(String ra, int qtde);
+    boolean remover(String ra);
 
     /**
      * Busca um aluno no armazenamento.
      *
      * @param ra RA do aluno
-     * @param qtde capacidade máxima do armazenamento
      * @return aluno encontrado ou null quando não existir
      */
-    Aluno buscar(String ra, int qtde);
+    Aluno buscar(String ra);
+
+    /**
+     * Retorna a quantidade de alunos armazenados.
+     *
+     * @return quantidade de alunos armazenados
+     */
+    int getQtde();
+
+    /**
+     * Verifica se o armazenamento está cheio.
+     *
+     * @return true se estiver cheio, false caso contrário
+     */
+    boolean estaCheio();
 }

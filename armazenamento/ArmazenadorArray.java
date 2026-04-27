@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-public class Armazenador implements IArmazenador, Serializable {
+public class ArmazenadorArray implements IArmazenador, Serializable {
     private Aluno[] arm;
 
     /**
@@ -16,7 +16,7 @@ public class Armazenador implements IArmazenador, Serializable {
      *
      * @param qtde quantidade máxima de alunos suportada
      */
-    Armazenador(int qtde) {
+    ArmazenadorArray(int qtde) {
         this.arm = new Aluno[qtde];
     }
 
@@ -34,10 +34,10 @@ public class Armazenador implements IArmazenador, Serializable {
      * Insere um aluno na primeira posição disponível.
      *
      * @param a objeto aluno a ser inserido
-     * @param qtde capacidade máxima do armazenamento
      * @return true quando a inserção for realizada com sucesso
      */
-    public boolean inserir(Aluno a, int qtde) {
+    public boolean inserir(Aluno a) {
+        int qtde = this.arm.length;
         boolean inserido = false;
         int cont = 0;
 
@@ -57,10 +57,10 @@ public class Armazenador implements IArmazenador, Serializable {
      * Remove um aluno a partir do RA informado.
      *
      * @param ra registro acadêmico do aluno
-     * @param qtde capacidade máxima do armazenamento
      * @return true quando a remoção for realizada com sucesso
      */
-    public boolean remover(String ra, int qtde) {
+    public boolean remover(String ra) {
+        int qtde = this.arm.length;
         boolean removido = false;
         int cont = 0;
 
@@ -72,7 +72,6 @@ public class Armazenador implements IArmazenador, Serializable {
                 cont++;
             }
         }
-
         return removido;
     }
 
@@ -80,16 +79,38 @@ public class Armazenador implements IArmazenador, Serializable {
      * Busca um aluno a partir do RA informado.
      *
      * @param ra registro acadêmico do aluno
-     * @param qtde capacidade máxima do armazenamento
      * @return aluno encontrado ou null quando não existir
      */
-    public Aluno buscar(String ra, int qtde) {
+    public Aluno buscar(String ra) {
+        int qtde = this.arm.length;
         for (int cont = 0; cont < qtde; cont++) {
             if (arm[cont] != null && arm[cont].getRa().equals(ra)) {
                 return arm[cont];
             }
         }
-
         return null;
+    }
+
+    /**
+     * Retorna a quantidade de alunos armazenados.
+     *
+     * @return quantidade de alunos armazenados
+     */
+    public int getQtde() {
+        return arm.length;
+    }
+
+    /**
+     * Verifica se o armazenamento está cheio.
+     *
+     * @return true se estiver cheio, false caso contrário
+     */
+    public boolean estaCheio() {
+        for (int i = 0; i < arm.length; i++) {
+            if (arm[i] == null) {
+                return false;
+            }
+        }
+        return true;
     }
 }

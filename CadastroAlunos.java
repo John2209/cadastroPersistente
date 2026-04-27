@@ -10,7 +10,7 @@ import alunos.*;
  */
 public class CadastroAlunos implements java.io.Serializable{
     private IArmazenador arm;
-    private IMenu menu;
+    private transient IMenu menu;
 
     /**
      * Construtor da classe.
@@ -18,25 +18,29 @@ public class CadastroAlunos implements java.io.Serializable{
      * @param qtde capacidade máxima do armazenamento de alunos
      * @param menu implementação de entrada e saída utilizada pela aplicação
      */
-    CadastroAlunos(int qtde, IMenu menu) {
+    CadastroAlunos(int qtde, IMenu menu) {          // Com capacidade fixa
         this.arm = IArmazenador.criar(qtde);
+        this.menu = menu;
+    }
+
+    /**
+     * Construtor da classe CadastroAlunos.
+     * Inicializa o armazenamento padrão para alunos e associa o menu de entrada e saída.
+     *
+     * @param menu instância de IMenu que implementa os serviços de entrada e saída do sistema
+     */
+    CadastroAlunos(IMenu menu) {
+        this.arm = IArmazenador.criar();
         this.menu = menu;
     }
 
     /**
      * Realiza o cadastro de um novo aluno.
      *
-     * @param qtde capacidade máxima do cadastro
      * @return true quando a inserção for realizada com sucesso
      */
-    public boolean inserirAluno(int qtde) {
-        boolean cheio = true;
-
-        for (int i = 0; i < qtde; i++) {
-            if (arm.getAluno(i) == null) {
-                cheio = false;
-            }
-        }
+    public boolean inserirAluno() {
+        boolean cheio = arm.estaCheio();
 
         if (cheio) {
             this.menu.exibirMensagem("Capacidade máxima atingida\n");
@@ -87,7 +91,7 @@ public class CadastroAlunos implements java.io.Serializable{
             }
         }
 
-        if (arm.buscar(ra, qtde) != null) {
+        if (arm.buscar(ra) != null) {
             this.menu.exibirMensagem("Ja existe um aluno cadastrado com esse RA\n");
             return false;
         }
@@ -124,16 +128,15 @@ public class CadastroAlunos implements java.io.Serializable{
 
         Aluno a = new Aluno(nome, idade, ra, curso, semestre);
 
-        return arm.inserir(a, qtde);
+        return arm.inserir(a);
     }
 
     /**
      * Remove um aluno a partir do RA informado.
      *
-     * @param qtde capacidade máxima do cadastro
      * @return true quando a remoção for realizada com sucesso
      */
-    public boolean removerAluno(int qtde) {
+    public boolean removerAluno() {
         String ra = "";
 
         while (ra.equals("")) { //Enquanto o RA nao for digitado, fica em loop
@@ -148,21 +151,21 @@ public class CadastroAlunos implements java.io.Serializable{
             }
         }
 
-        if (arm.buscar(ra, qtde) == null) {
+        if (arm.buscar(ra) == null) {
             this.menu.exibirMensagem("Nao existe aluno com o RA informado\n");
             return false;
         }
 
-        return arm.remover(ra, qtde);
+        return arm.remover(ra);
     }
 
     /**
      * Lista todos os alunos cadastrados.
      * Permite escolher entre exibição comum e bibliográfica.
      *
-     * @param qtde capacidade máxima do cadastro
      */
-    public void listarAluno(int qtde) {
+    public void listarAluno() {
+        int qtde = this.arm.getQtde();
         boolean temAluno = false;
 
         for (int i = 0; i < qtde; i++) {
@@ -217,10 +220,9 @@ public class CadastroAlunos implements java.io.Serializable{
     /**
      * Atualiza os dados de um aluno já cadastrado.
      *
-     * @param qtde capacidade máxima do cadastro
      * @return true quando a atualização for realizada com sucesso
      */
-    public boolean atualizarAluno(int qtde) {
+    public boolean atualizarAluno() {
         String ra = "";
 
         while (ra.equals("")) {
@@ -235,7 +237,7 @@ public class CadastroAlunos implements java.io.Serializable{
             }
         }
 
-        Aluno a = arm.buscar(ra, qtde);
+        Aluno a = arm.buscar(ra);
 
         if (a == null) {
             this.menu.exibirMensagem("Nao existe aluno cadastrado com o RA informado.\n");
@@ -313,8 +315,21 @@ public class CadastroAlunos implements java.io.Serializable{
         a.setSemestre(semestre);
         return true;
     }
-    
+
+    /**
+     * Retorna o armazenamento de alunos.
+     * @return
+     */
     public IArmazenador getArm() {
         return this.arm;
+    }
+
+    /**
+     * Define o menu utilizado pela aplicação.
+     *
+     * @param menu instância de IMenu que implementa os serviços de entrada e saída do sistema
+     */
+    public void setMenu(IMenu menu) {
+        this.menu = menu;
     }
 }
