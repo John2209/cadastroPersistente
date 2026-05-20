@@ -16,7 +16,6 @@
 *.ctxt
 
 # Ignorar pacotes e arquivos de log
-*.jar
 *.war
 *.log
 
@@ -26,3 +25,8 @@ out/
 
 # Ignorar configurações locais do IntelliJ IDEA
 .idea/
+
+# BlueJ
+*.ctxt
+bluej.pkg
+bluej.project

@@ -1,8 +1,10 @@
 package salvamento;
 import java.io.*;
 /**
- * @author julio
- * Classe para gravar e ler arquivo binario
+ * Classe responsável por gravar e ler objetos em arquivo binário.
+ *
+ * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
+ * @version 1.0 2026/04/07
  */
 public class ArquivoBinario implements ISalvamento {
 

@@ -1,5 +1,6 @@
 import menu.*;
 import salvamento.*;
+
 /**
  * Classe principal do cadastroAluno
  * Responsável por iniciar a interface e controlar o menu
@@ -7,8 +8,8 @@ import salvamento.*;
  * @author Guilherme Pereira de Rivoredo, João Batistella da Costa, Pedro Henrique Freire Pereira, Rafael Barros Infantini
  * @version 1.0 2026/04/07
  */
-
 public class App {
+
     /**
      * Ponto de entrada da aplicação.
      * Gerencia a interação com o usuário para criar, importar, manipular e salvar cadastros de alunos.
@@ -23,98 +24,118 @@ public class App {
         // Guarda o nome do arquivo informado
         String nomeArquivo;
 
-        // Define as opções do primeiro menu
-        String[] itensMenuInicial = {"1 - Criar um novo cadastro", "2 - Importar um cadastro", "3 - Sair"};
-        // Armazena a opção escolhida no menu inicial
-        int opcaoInicial = 0;
-        // Guarda o cadastro carregado ou criado
-        CadastroAlunos ca = null;
+        // Loop principal que mantém o programa rodando para permitir voltar ao menu inicial
+        while (true) {
+            
+            // Define as opções do primeiro menu
+            String[] itensMenuInicial = {"1 - Criar um novo cadastro", "2 - Importar um cadastro", "3 - Sair"};
+            // Armazena a opção escolhida no menu inicial
+            int opcaoInicial = 0;
+            // Guarda o cadastro carregado ou criado
+            CadastroAlunos ca = null;
 
-        do {
-            // Exibe o menu inicial e lê a escolha
-            opcaoInicial = mn.criarMenu(itensMenuInicial);
+            // Loop do menu inicial (Criação/Importação)
+            do {
+                // Exibe o menu inicial e lê a escolha
+                opcaoInicial = mn.criarMenu(itensMenuInicial);
 
-            // Executa a ação da opção escolhida
-            switch (opcaoInicial) {
-                case 1:
-                    // Cria um cadastro com armazenamento dinâmico
-                    ca = new CadastroAlunos(mn);  // Armazenamento com lista
+                // Executa a ação da opção escolhida
+                switch (opcaoInicial) {
+                    case 1:
+                        // Cria um cadastro com armazenamento dinâmico
+                        ca = new CadastroAlunos(mn);  // Armazenamento com lista
 
-                    // Armazenamento fixo
-                    //ca = new CadastroAlunos(lerQuantidadeAlunos(mn), mn); // Armazenamento com array
-                    break;
-                case 2:
-                    // Pede o nome do arquivo ao usuário
-                    nomeArquivo = mn.lerEntrada("nome do arquivo");
-                    // Lê o objeto salvo no arquivo.
-                    Object obj = arq.lerObj(nomeArquivo);
-                    // Confirma se o objeto lido é um cadastro válido
-                    if (obj instanceof CadastroAlunos) {
-                        // Recupera o cadastro salvo
-                        ca = (CadastroAlunos) obj;
-                        // Reassocia o menu após a desserialização
-                        ca.setMenu(mn);
-                        // Informa sucesso no carregamento
-                        mn.exibirMensagem("Cadastro carregado com sucesso!\n");
-                    } else {
-                        // Informa falha no carregamento
-                        mn.exibirMensagem("Nao foi possivel carregar o arquivo.\n");
-                    }
-                    break;
-                case 3:
-                    // Encerra a aplicação
-                    System.exit(0);
-            }
-        // Repete até existir um cadastro carregado ou criado
-        } while (ca == null);
+                        // Armazenamento fixo (comentado)
+                        //ca = new CadastroAlunos(lerQuantidadeAlunos(mn), mn); // Armazenamento com array
+                        break;
+                    case 2:
+                        // Pede o nome do arquivo ao usuário
+                        nomeArquivo = mn.lerEntrada("nome do arquivo");
+                        
+                        // Aborta a importação se o usuário clicou em Cancelar (evita NullPointerException)
+                        if (nomeArquivo == null) {
+                            break; 
+                        }
+                        
+                        // Lê o objeto salvo no arquivo.
+                        Object obj = arq.lerObj(nomeArquivo);
+                        
+                        // Confirma se o objeto lido é um cadastro válido
+                        if (obj instanceof CadastroAlunos) {
+                            // Recupera o cadastro salvo
+                            ca = (CadastroAlunos) obj;
+                            // Reassocia o menu após a desserialização
+                            ca.setMenu(mn);
+                            // Informa sucesso no carregamento
+                            mn.exibirMensagem("Cadastro carregado com sucesso!\n");
+                        } else {
+                            // Informa falha no carregamento
+                            mn.exibirMensagem("Nao foi possivel carregar o arquivo.\n");
+                        }
+                        break;
+                    case 3:
+                        // Encerra a aplicação completamente
+                        System.exit(0);
+                }
+            // Repete até existir um cadastro carregado ou criado
+            } while (ca == null);
 
-        // Define as opções do menu principal
-        String[] itensMenuPrograma = {"1 - Inserir", "2 - Remover", "3 - Listar", "4 - Atualizar dados de aluno", "5 - Salvar", "6 - Sair"};
-        // Armazena a opção escolhida
-        int opcao = 0;
+            // Define as opções do menu principal, trocando 'Sair' por 'Voltar'
+            String[] itensMenuPrograma = {"1 - Inserir", "2 - Remover", "3 - Listar", "4 - Atualizar dados de aluno", "5 - Salvar", "6 - Voltar"};
+            // Armazena a opção escolhida
+            int opcao = 0;
 
-        do {
-            // Exibe o menu principal e lê a escolha
-            opcao = mn.criarMenu(itensMenuPrograma);
+            // Loop do menu de gerenciamento do cadastro
+            do {
+                // Exibe o menu principal e lê a escolha
+                opcao = mn.criarMenu(itensMenuPrograma);
 
-            // Executa a ação escolhida
-            switch (opcao) {
-                case 1:
-                    // Tenta inserir um novo aluno
-                    if (ca.inserirAluno()) {
-                        // Informa sucesso na inserção
-                        mn.exibirMensagem("Aluno inserido com sucesso!\n");
-                    }
-                    break;
-                case 2:
-                    // Tenta remover um aluno existente
-                    if (ca.removerAluno()) {
-                        // Informa sucesso na remoção
-                        mn.exibirMensagem("Aluno removido com sucesso!\n");
-                    }
-                    break;
-                case 3:
-                    // Mostra os alunos cadastrados
-                    ca.listarAluno();
-                    break;
-                case 4:
-                    // Tenta atualizar os dados do aluno
-                    if (ca.atualizarAluno()) {
-                        // Informa sucesso na atualização
-                        mn.exibirMensagem("Aluno atualizado com sucesso!\n");
-                    }
-                    break;
-                case 5:
-                    // Pede o nome do arquivo para salvar
-                    nomeArquivo = mn.lerEntrada("nome do arquivo");
-                    // Salva o cadastro no arquivo
-                    arq.gravarObj(ca, nomeArquivo);
-                    break;
-            }
-        // Repete enquanto a opção for válida e diferente de sair
-        } while (opcao > 0 && opcao < 6);
+                // Executa a ação escolhida
+                switch (opcao) {
+                    case 1:
+                        // Tenta inserir um novo aluno
+                        if (ca.inserirAluno()) {
+                            // Informa sucesso na inserção
+                            mn.exibirMensagem("Aluno inserido com sucesso!\n");
+                        }
+                        break;
+                    case 2:
+                        // Tenta remover um aluno existente
+                        if (ca.removerAluno()) {
+                            // Informa sucesso na remoção
+                            mn.exibirMensagem("Aluno removido com sucesso!\n");
+                        }
+                        break;
+                    case 3:
+                        // Mostra os alunos cadastrados
+                        ca.listarAluno();
+                        break;
+                    case 4:
+                        // Tenta atualizar os dados do aluno
+                        if (ca.atualizarAluno()) {
+                            // Informa sucesso na atualização
+                            mn.exibirMensagem("Aluno atualizado com sucesso!\n");
+                        }
+                        break;
+                    case 5:
+                        // Pede o nome do arquivo para salvar
+                        nomeArquivo = mn.lerEntrada("nome do arquivo");
+                        
+                        // Impede o programa de quebrar (NullPointerException) caso o usuário clique em Cancelar
+                        if (nomeArquivo != null) {
+                            // Salva o cadastro no arquivo
+                            arq.gravarObj(ca, nomeArquivo);
+                        }
+                        break;
+                    case 6:
+                        // Volta para a seleção de novo arquivo ou importação (sai do loop interno)
+                        break;
+                }
+            // Repete enquanto a opção for válida e diferente de Voltar
+            } while (opcao > 0 && opcao < 6);
+            
+        } // Fim do loop geral (while true), que faz o código retornar para o Menu Inicial.
     }
-
 
     /**
      * Lê a quantidade de alunos a partir da entrada do usuário.
@@ -129,6 +150,9 @@ public class App {
         while (true) {
             // Solicita a quantidade de alunos
             String entrada = mn.lerEntrada("Forneca a quantidade de alunos: ");
+
+            // Previne erros se cancelar
+            if (entrada == null) return -1;
 
             try {
                 // Converte a entrada para inteiro

@@ -62,14 +62,27 @@ public class CadastroAlunos implements java.io.Serializable{
             // Solicita o nome do aluno
             String entrada = this.menu.lerEntrada("Nome: ");
 
+            if (entrada == null) {
+                return false;
+            }
+
             // Remove espaços extras da entrada
             if (entrada != null) {
                 nome = entrada.trim();
             }
 
-            // Exige um nome não vazio
+            // Verifica se está vazio
             if (nome.equals("")) {
                 this.menu.exibirMensagem("Informe um nome valido\n");
+            } else if (nome.matches(".*\\d.*")) {
+                /*
+                 * BLOCO DE VALIDAÇÃO AVANÇADA (Regex)
+                 * O comando 'matches(".*\\d.*")' procura por qualquer dígito (número) dentro do texto.
+                 * Se a condição for verdadeira, isso significa que o usuário colocou números no nome.
+                 * Então o programa mostra erro e zera o nome para obrigar o usuário a tentar de novo.
+                 */
+                this.menu.exibirMensagem("O nome nao pode conter numeros!\n");
+                nome = ""; // Limpa a variável para forçar a repetição do laço while
             }
         }
 
@@ -80,17 +93,27 @@ public class CadastroAlunos implements java.io.Serializable{
             // Solicita a idade do aluno
             String entrada = this.menu.lerEntrada("Idade: ");
 
-            try {
-                // Converte a idade para número
-                idade = Integer.parseInt(entrada);
-            } catch (NumberFormatException e) {
-                // Marca como inválida para repetir
-                idade = 0;
+            if (entrada == null) {
+                return false;
             }
 
-            // Exige idade dentro da faixa esperada
-            if (idade < 1 || idade > 120) {
-                this.menu.exibirMensagem("Informe uma idade entre 1 e 120\n");
+            try {
+                /*
+                 * BLOCO DE CONVERSÃO E VALIDAÇÃO
+                 * 'Integer.parseInt' tenta transformar o texto lido em um número de verdade.
+                 * Se o usuário digitar uma letra, a conversão falha e cai no bloco 'catch' abaixo,
+                 * mostrando uma mensagem de erro em vez de fechar o programa.
+                 */
+                idade = Integer.parseInt(entrada);
+                
+                // Exige que a idade seja válida e positiva
+                if (idade < 1 || idade > 120) {
+                    this.menu.exibirMensagem("Informe uma idade positiva, entre 1 e 120\n");
+                }
+            } catch (NumberFormatException e) {
+                // Captura o erro de digitação de letras em vez de números
+                this.menu.exibirMensagem("Idade invalida! Digite apenas numeros.\n");
+                idade = 0; // Mantém a variável inválida para que o loop continue
             }
         }
 
@@ -101,6 +124,10 @@ public class CadastroAlunos implements java.io.Serializable{
             // Solicita o RA do aluno
             String entrada = this.menu.lerEntrada("RA: ");
 
+            if (entrada == null) {
+                return false;
+            }
+
             // Remove espaços extras da entrada
             if (entrada != null) {
                 ra = entrada.trim();
@@ -109,6 +136,14 @@ public class CadastroAlunos implements java.io.Serializable{
             // Exige um RA não vazio
             if (ra.equals("")) {
                 this.menu.exibirMensagem("Informe um valor valido\n");
+            } else if (!ra.matches("\\d+")) {
+                /*
+                 * BLOCO DE VALIDAÇÃO AVANÇADA (Regex)
+                 * O comando 'matches("\\d+")' checa se a string possui APENAS números de ponta a ponta.
+                 * Usamos a exclamação (!) no começo para inverter a lógica: "se não possuir apenas números".
+                 */
+                this.menu.exibirMensagem("O RA deve conter APENAS numeros!\n");
+                ra = ""; // Força a repetir a pergunta do RA
             }
         }
 
@@ -124,6 +159,10 @@ public class CadastroAlunos implements java.io.Serializable{
         while (curso.equals("")) {
             // Solicita o curso do aluno
             String entrada = this.menu.lerEntrada("Curso: ");
+
+            if (entrada == null) {
+                return false;
+            }
 
             // Remove espaços extras da entrada
             if (entrada != null) {
@@ -143,17 +182,22 @@ public class CadastroAlunos implements java.io.Serializable{
             // Solicita o semestre do aluno
             String entrada = this.menu.lerEntrada("Semestre: ");
 
-            try {
-                // Converte o semestre para número
-                semestre = Integer.parseInt(entrada);
-            } catch (NumberFormatException e) {
-                // Marca como inválido para repetir
-                semestre = 0;
+            if (entrada == null) {
+                return false;
             }
 
-            // Exige semestre válido
-            if (semestre < 1 || semestre > 13) {
-                this.menu.exibirMensagem("Informe um semestre valido [1-12]\n");
+            try {
+                // Converte o semestre para número e impede que o programa feche se ele digitar letras
+                semestre = Integer.parseInt(entrada);
+                
+                // Exige semestre positivo e válido (não existe semestre negativo)
+                if (semestre < 1 || semestre > 13) {
+                    this.menu.exibirMensagem("Informe um semestre positivo e valido [1-12]\n");
+                }
+            } catch (NumberFormatException e) {
+                // Captura o erro provocado caso digite letras no lugar de um número
+                this.menu.exibirMensagem("Semestre invalido! Digite apenas numeros.\n");
+                semestre = 0; // Mantém no loop
             }
         }
 
@@ -177,14 +221,21 @@ public class CadastroAlunos implements java.io.Serializable{
             // Solicita o RA do aluno a remover
             String entrada = this.menu.lerEntrada("Digite o RA do aluno a ser removido: ");
 
+            if (entrada == null) {
+                return false;
+            }
+
             // Remove espaços extras da entrada
             if (entrada != null) {
                 ra = entrada.trim();
             }
 
-            // Exige um RA não vazio
+            // Exige um RA não vazio e estritamente numérico
             if (ra.equals("")) {
                 this.menu.exibirMensagem("Informe um RA valido\n");
+            } else if (!ra.matches("\\d+")) {
+                this.menu.exibirMensagem("O RA deve conter apenas numeros!\n");
+                ra = ""; // Zera a variável para continuar no loop
             }
         }
 
@@ -325,7 +376,13 @@ public boolean atualizarAluno() {
                         String entrada = this.menu.lerEntrada("Digite o novo nome:");
                         if (entrada == null) break; // Escapa se cancelar
                         novoNome = entrada.trim();
-                        if (novoNome.equals("")) this.menu.exibirMensagem("Nome invalido!");
+                        if (novoNome.equals("")) {
+                            this.menu.exibirMensagem("Nome invalido!");
+                        } else if (novoNome.matches(".*\\d.*")) {
+                            // Usa expressão regular Regex para barrar números no nome durante a atualização
+                            this.menu.exibirMensagem("O nome nao pode conter numeros!");
+                            novoNome = ""; 
+                        }
                     }
                     if (!novoNome.equals("")) { // Só atualiza se realmente preencheu
                         a.setNome(novoNome);
@@ -341,7 +398,7 @@ public boolean atualizarAluno() {
                         try {
                             novaIdade = Integer.parseInt(entrada);
                             if (novaIdade < 1 || novaIdade > 120) {
-                                this.menu.exibirMensagem("Informe uma idade valida entre 1 e 120\n");
+                                this.menu.exibirMensagem("Informe uma idade positiva e valida entre 1 e 120\n");
                             } else {
                                 a.setIdade(novaIdade);
                                 atualizado = true;
@@ -375,7 +432,7 @@ public boolean atualizarAluno() {
                         try {
                             novoSemestre = Integer.parseInt(entrada);
                             if (novoSemestre < 1 || novoSemestre > 13) {
-                                this.menu.exibirMensagem("Informe um semestre valido [1-12]\n");
+                                this.menu.exibirMensagem("Informe um semestre positivo e valido [1-12]\n");
                             } else {
                                 a.setSemestre(novoSemestre);
                                 atualizado = true;
